@@ -47,12 +47,26 @@ Il reprend le fichier original en y ajoutant une feuille 'Fusion'.
 Les données qui ont été fusionnées avec des heuristiques peu fiables correspondent aux cellules en rouge, à vérifier manuellement.
 
 
-Exemple
--------
+Installation des dépendances
+----------------------------
+En supposant python (3.6+) et pip déjà installés :
+$ python -m pip --user fire openpyxl
 
-> python fusionner_notes.py notes-a-fusionner.xlsx
+Attention, il est fréquent que sous Linux, l'exécutable pour Python 3+ 
+s'appelle python3, et non python :
+$ python3 -m pip install --user fire openpyxl
+
+
+Exemple d'utilisation
+---------------------
+
+> $ python merge-scores.py notes-a-fusionner.xlsx
 
 Un fichier *notes-a-fusionner_output.xlsx* est généré, avec les données fusionnées dans l'onglet fusion.
+
+Ou encore (Linux) :
+> $ chmod u+x merge-scores.py
+> $ ./merge-scores.py notes-a-fusionner.xlsx
 
 
 FAQ
