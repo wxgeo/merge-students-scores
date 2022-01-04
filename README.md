@@ -50,11 +50,13 @@ Les données qui ont été fusionnées avec des heuristiques peu fiables corresp
 Installation des dépendances
 ----------------------------
 En supposant python (3.6+) et pip déjà installés :
-$ python -m pip --user fire openpyxl
+
+    $ python -m pip --user fire openpyxl
 
 Attention, il est fréquent que sous Linux, l'exécutable pour Python 3+ 
 s'appelle python3, et non python :
-$ python3 -m pip install --user fire openpyxl
+
+    $ python3 -m pip install --user fire openpyxl
 
 
 Exemple d'utilisation

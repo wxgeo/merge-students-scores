@@ -47,10 +47,10 @@ def contain(name1, name2):
     return s1.issubset(s2) or s2.issubset(s1)
 
 def partial_match(name1, name2):
-    """Il suffit d'un préname commun pour que la comparaison réussisse...
+    """Il suffit d'un prénom commun pour que la comparaison réussisse...
 
     À utiliser en dernier recours, mais peut être utile (étudiant enregistré
-    avec le name de famille du père ou de la mère selon la BD par exemple)."""
+    avec le name de famille du père ou de la mère selon la BDD par exemple)."""
     return not norm(name1).isdisjoint(norm(name2))
 
 
@@ -69,7 +69,7 @@ class Fusion:
         names = set(self.names)
         found = ProtectedDict(dict.fromkeys(names))
 
-        # On essaie déjà de récupérer les names tels quels.
+        # On essaie déjà de récupérer les noms tels quels.
         used = set()
         for name in names:
             if name in remaining:
@@ -80,9 +80,9 @@ class Fusion:
         for name in used:
             remaining.pop(name)
 
-        # On regarde si les names correspondent en enlevant les accents et en ne tenant
+        # On regarde si les noms correspondent en enlevant les accents et en ne tenant
         # pas compte de l'ordre nom/prénom.
-        # Puis comparaisons de moins précises...
+        # Puis comparaisons de moins en moins précises...
         for fiability, comp in enumerate((match, contain, partial_match), start=1):
             used_names = set()
             used_candidates = set()
@@ -93,8 +93,8 @@ class Fusion:
                         used_names.add(name)
                         used_candidates.add(candidate)
                         # Don't break here !!
-                        # We have to be sure there is not serveral names matching
-                        # TODO: deals with the case where serveral names are matching
+                        # We have to be sure there is not several names matching
+                        # TODO: deals with the case where several names are matching
             names -= used_names
             for candidate in used_candidates:
                 remaining.pop(candidate)
@@ -129,9 +129,10 @@ def fusionner_classeur(filename):
         name_has_2_cols = (isinstance(sheet['B1'].value, str) and sheet['B1'].value != '')
 
         # Detect the table height.
-        for height, cell in enumerate(sheet['A']):
+        for height, cell in enumerate(sheet['A'], start=1):
             val = cell.value
             if not isinstance(val, str) or val.strip() == '':
+                height -= 1
                 break
 
         print(' -', height, 'lines')
