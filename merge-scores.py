@@ -222,11 +222,14 @@ def create_new_sheet_with_merge_results(spreadsheet: Workbook, fusion: FusionDat
 def fusionner_classeur(filename: str) -> None:
     """Fusionne les données du classeur Excel (document .xlsx).
 
-    La première feuille du tableur doit contenir des noms sur la colonne A.
+    La première feuille du tableur contient les noms d'étudiants complets sur la colonne A.
+    (Eventuellement, on peut avoir les prénoms et noms répartis entre les colonnes A et B).
 
-    Chaque autre feuille doit contenir :
-        - des noms sur la colonne A,
+    Chaque autre feuille contient :
+        - des noms complets sur la colonne A,
         - des notes sur la colonne B.
+    (Eventuellement, là aussi,  on peut avoir deux colonnes pour noms et prénoms, auquel cas
+    les notes doivent être en colonne C).
 
     Ces colonnes ne doivent pas avoir d'entête.
     Les autres colonnes sont ignorées.
