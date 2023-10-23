@@ -163,7 +163,9 @@ def get_names(sheet: Worksheet, n_rows: int, name_has_2_cols: bool) -> List[Name
     return names
 
 
-def create_new_sheet_with_merge_results(spreadsheet: Workbook, fusion: FusionData) -> None:
+def create_new_sheet_with_merge_results(
+    spreadsheet: Workbook, fusion: FusionData
+) -> None:
     new = spreadsheet.create_sheet("Fusion")
 
     for i, name in enumerate(sorted(fusion.names), start=1):
@@ -211,7 +213,9 @@ def create_new_sheet_with_merge_results(spreadsheet: Workbook, fusion: FusionDat
                 new.cell(i, j + k).fill = my_fill
 
     if not all_merged:
-        new.cell(i0, 1).value = "Attention, certaines données n'ont pas pu être fusionnées :"
+        new.cell(
+            i0, 1
+        ).value = "Attention, certaines données n'ont pas pu être fusionnées :"
         my_font = fonts.Font(color=my_red, bold=True, italic=True)
         new.cell(i0, 1).font = my_font
 
@@ -260,7 +264,9 @@ def fusionner_classeur(filename: str) -> None:
             # No scores on 1st sheet
         else:
             # noinspection PyUnboundLocalVariable
-            students_scores = fusion.load_sheet_data(sheet, names, name_has_2_cols, n_rows)
+            students_scores = fusion.load_sheet_data(
+                sheet, names, name_has_2_cols, n_rows
+            )
             fusion.process_sheet_data(students_scores)
 
     create_new_sheet_with_merge_results(spreadsheet, fusion)
@@ -276,5 +282,9 @@ def fusionner_classeur(filename: str) -> None:
     spreadsheet.save(f"{base}_output.{ext}")
 
 
-if __name__ == "__main__":
+def main():
     Fire(fusionner_classeur)
+
+
+if __name__ == "__main__":
+    main()
